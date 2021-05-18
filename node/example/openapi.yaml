@@ -1,0 +1,17 @@
+openapi: 3.0.3
+info:
+  title: Smart Resilience Services example container
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 2.2.2
+components:
+  schemas:
+    anomaly:
+      $ref: ./api/schemas/anomaly.yaml
+  securitySchemes:
+    BasicUser:
+      type: http
+      scheme: basic
+
+paths:
+  /example:
+    $ref: ./api/operations/example.yaml

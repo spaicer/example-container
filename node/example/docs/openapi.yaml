@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Smart Resilience Services example container
+  description: 'Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.'
+  version: 2.2.2
+components:
+  schemas:
+    anomaly:
+      type: object
+      required:
+        - type
+        - name
+        - importance
+        - isAnomaly
+      properties:
+        timestamp:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - threshold breached
+            - volatility increasing
+            - other
+        importance:
+          type: integer
+          minimum: 0
+          maximum: 5
+        isAnomaly:
+          type: boolean
+  securitySchemes:
+    BasicUser:
+      type: http
+      scheme: basic
+paths:
+  /example:
+    post:
+      description: Execute anomaly detection on measured value
+      tags:
+        - anomaly
+        - srs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - temperature
+              properties:
+                temperature:
+                  type: number
+                  minimum: -250
+                  maximum: 500
+      responses:
+        '200':
+          description: Analyzed temperature
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - type
+                  - name
+                  - importance
+                  - isAnomaly
+                properties:
+                  timestamp:
+                    type: integer
+                  name:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                      - threshold breached
+                      - volatility increasing
+                      - other
+                  importance:
+                    type: integer
+                    minimum: 0
+                    maximum: 5
+                  isAnomaly:
+                    type: boolean
+        '401':
+          description: Verification via password did not match credentials
+        '403':
+          description: Not authorized to access the anomaly detection
+        '500':
+          description: Unexpected internal server error
