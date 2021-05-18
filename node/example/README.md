@@ -15,6 +15,10 @@ You need to install <a href="https://www.digitalocean.com/community/tutorials/ho
 ```sh
 docker-compose up
 ```
+Executing this command will start two docker container. ReDoc and the application itself. Redoc lets serves a documentation page of the openAPI specification.
+![image](https://user-images.githubusercontent.com/37148029/118663163-e19b0880-b7f0-11eb-8e3c-1d9eba33d3ea.png)
+
+
 
 
 ### Build and Run single containers using Docker
