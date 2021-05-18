@@ -10,7 +10,14 @@
 ### Prerequisits
 You need to install <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04">docker</a> and <a href="">docker-compose</a> for the system to work. **Dont forget to set the docker command to work withou sudo.**
 
-### Build and Run using Docker
+### Build and Run docs and srs container
+
+```sh
+docker-compose up
+```
+
+
+### Build and Run single containers using Docker
 Build the container by 
 ```
 docker build -t spaicer-example-container . 
