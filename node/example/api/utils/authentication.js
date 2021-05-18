@@ -1,7 +1,5 @@
 let authentication = {}
 
-
-// -- User market communitcation
 authentication.BasicUser = async function (req, scopes, schema) {
     try {
         // add authentication here!
