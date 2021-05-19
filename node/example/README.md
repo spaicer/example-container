@@ -31,6 +31,12 @@ Run the container
 docker run -dp 3001:3001 spaicer-example-container
 ```
 
+Test the server using curl
+```sh
+curl -X POST http://<your-ip>:3001/example -H "Content-Type: application/json" -d "{\"temperature\":10.4}"
+```
+
+
 ### Development 
 
 Install dependencies by 
