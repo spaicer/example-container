@@ -75,7 +75,7 @@ components:
       type: http
       scheme: basic
 paths:
-  /pics:
+  /picks:
     get:
       description: Fetch top picks
       tags:
@@ -156,7 +156,7 @@ paths:
           in: query
           schema:
             type: string
-            examples:
+            example:
               - 1 M
               - 2 D
               - 100 H

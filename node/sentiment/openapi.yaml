@@ -15,7 +15,7 @@ components:
       scheme: basic
 
 paths:
-  /pics:
+  /picks:
     $ref: ./api/operations/picks.yaml
   /trends:
     $ref: ./api/operations/trend.yaml
