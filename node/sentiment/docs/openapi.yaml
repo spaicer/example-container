@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Smart Resilience Services example container
+  description: 'Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.'
+  version: 2.2.2
+components:
+  schemas:
+    pick:
+      type: object
+      required:
+        - headline
+        - body
+        - trend
+        - stars
+      properties:
+        headline:
+          type: string
+          example: PM treads carefully about China
+        body:
+          type: string
+        trend:
+          type: string
+          enum:
+            - up
+            - sideways
+            - down
+        stars:
+          type: integer
+          minimum: 0
+          maximum: 5
+        relatedArticles:
+          type: array
+          items:
+            type: object
+            required:
+              - title
+              - href
+            properties:
+              title:
+                type: string
+              href:
+                type: string
+        labels:
+          type: array
+          items:
+            type: object
+            required:
+              - topic
+              - text
+            properties:
+              topic:
+                type: string
+              text:
+                type: string
+    trend:
+      type: object
+      required:
+        - timestamps
+        - values
+      properties:
+        topic:
+          type: string
+          example: Export China
+        timestamps:
+          type: array
+          items:
+            type: string
+            format: XXX
+        values:
+          type: array
+          items:
+            type: number
+  securitySchemes:
+    BasicUser:
+      type: http
+      scheme: basic
+paths:
+  /pics:
+    get:
+      description: Fetch top picks
+      tags:
+        - news
+        - rss
+      responses:
+        '200':
+          description: Top picks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - headline
+                    - body
+                    - trend
+                    - stars
+                  properties:
+                    headline:
+                      type: string
+                      example: PM treads carefully about China
+                    body:
+                      type: string
+                    trend:
+                      type: string
+                      enum:
+                        - up
+                        - sideways
+                        - down
+                    stars:
+                      type: integer
+                      minimum: 0
+                      maximum: 5
+                    relatedArticles:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - title
+                          - href
+                        properties:
+                          title:
+                            type: string
+                          href:
+                            type: string
+                    labels:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - topic
+                          - text
+                        properties:
+                          topic:
+                            type: string
+                          text:
+                            type: string
+        '401':
+          description: Verification via password did not match credentials
+        '403':
+          description: Not authorized to access the sentiment analysis
+        '500':
+          description: Unexpected internal server error
+  /trends:
+    get:
+      description: Returns trendline of a specific topic
+      tags:
+        - trends
+      parameters:
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: timerange
+          in: query
+          schema:
+            type: string
+            examples:
+              - 1 M
+              - 2 D
+              - 100 H
+              - 10 S
+      responses:
+        '200':
+          description: Trendline of specified topic
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - timestamps
+                  - values
+                properties:
+                  topic:
+                    type: string
+                    example: Export China
+                  timestamps:
+                    type: array
+                    items:
+                      type: string
+                      format: XXX
+                  values:
+                    type: array
+                    items:
+                      type: number
+        '401':
+          description: Verification via password did not match credentials
+        '403':
+          description: Not authorized
+        '500':
+          description: Unexpected internal server error

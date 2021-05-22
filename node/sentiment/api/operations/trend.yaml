@@ -1,0 +1,29 @@
+get:
+  description: Returns trendline of a specific topic
+  tags:
+  - trends
+  parameters:
+    - name: title
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: timerange
+      in: query
+      schema:
+        type: string
+        example: ["1 M", "2 D", "100 H", "10 S"]
+  responses:
+    "200": 
+      description: Trendline of specified topic
+      content: 
+        "application/json":
+          schema:
+            $ref: '../../openapi.yaml#/components/schemas/trend'
+    "401":
+      description: Verification via password did not match credentials
+    "403":
+      description: Not authorized
+    "500":
+      description: Unexpected internal server error
+

@@ -1,0 +1,17 @@
+type: object
+required:
+- timestamps
+- values
+properties:
+  topic:
+    type: string
+    example: "Export China"
+  timestamps: 
+    type: array
+    items:
+      type: string
+      format: XXX
+  values: 
+    type: array
+    items:
+      type: number

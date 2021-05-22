@@ -1,0 +1,17 @@
+
+
+version: '3.6'
+
+services:
+  redoc:
+    restart: on-failure
+    image: redocly/redoc
+    ports:
+     - 8080:80
+    environment:
+      - SPEC_URL=https://raw.githubusercontent.com/spaicer/example-container/main/node/example/docs/openapi.yaml
+  spaicer:
+    restart: on-failure
+    build: .
+    ports:
+     - 8081:3001

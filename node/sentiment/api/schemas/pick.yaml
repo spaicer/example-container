@@ -1,0 +1,44 @@
+type: object
+required:
+- headline
+- body
+- trend
+- stars
+properties:
+  headline:
+    type: string
+    example: "PM treads carefully about China"
+  body: 
+    type: string
+  trend: 
+    type: string
+    enum: ["up", "sideways", "down"]
+  stars:
+    type: integer
+    minimum: 0
+    maximum: 5
+  relatedArticles: 
+    type: array
+    items: 
+      type: object
+      required:
+      - title
+      - href
+      properties: 
+        title:
+          type: string
+        href:
+          type: string
+  labels: 
+    type: array
+    items: 
+      type: object
+      required:
+      - topic
+      - text
+      properties: 
+        topic:
+          type: string
+        text:
+          type: string
+  

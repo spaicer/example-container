@@ -1,0 +1,21 @@
+get:
+  description: Fetch top picks 
+  tags:
+    - news
+    - rss
+  responses:
+    "200": 
+      description: Top picks 
+      content: 
+        "application/json":
+          schema:
+            type: array
+            items: 
+              $ref: '../../openapi.yaml#/components/schemas/pick'
+    "401":
+      description: Verification via password did not match credentials
+    "403":
+      description: Not authorized to access the sentiment analysis
+    "500":
+      description: Unexpected internal server error
+
