@@ -33,7 +33,7 @@ class Features(BaseModel):
     std: float
 
 
-@app.post('/example-feature-extration')
+@app.post('/example-feature-extration', response_model=Features)
 async def feature_extraction(raw_data: RawData):
     """Compute the mean value and the standard deviation."""
 
